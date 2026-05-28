@@ -152,14 +152,18 @@ public class IntentoServiceImpl implements IntentoService {
 
         Intento intentoGuardado = intentoRepository.save(intento);
 
-        emailService.enviarCorreoResultado(
-                usuario.getCorreo(),
-                usuario.getNombreUsuario(),
-                cuestionario.getTituloCuestionario(),
-                puntaje,
-                totalPreguntas,
-                correctas
-        );
+        try {
+            emailService.enviarCorreoResultado(
+                    usuario.getCorreo(),
+                    usuario.getNombreUsuario(),
+                    cuestionario.getTituloCuestionario(),
+                    puntaje,
+                    totalPreguntas,
+                    correctas
+            );
+        } catch (Exception e) {
+            System.out.println("No se pudo enviar correo de resultado: " + e.getMessage());
+        }
 
         return new ResolverCuestionarioResponseDTO(
                 intentoGuardado.getIdIntento(),

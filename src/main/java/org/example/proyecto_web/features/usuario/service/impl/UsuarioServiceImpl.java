@@ -57,10 +57,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         Usuario usuarioGuardado = usuarioRepository.save(usuario);
 
-        emailService.enviarCorreoBienvenida(
-                usuarioGuardado.getCorreo(),
-                usuarioGuardado.getNombreUsuario()
-        );
+        try {
+            emailService.enviarCorreoBienvenida(
+                    usuarioGuardado.getCorreo(),
+                    usuarioGuardado.getNombreUsuario()
+            );
+        } catch (Exception e) {
+            System.out.println("No se pudo enviar correo de bienvenida: " + e.getMessage());
+        }
 
         return toResponseDTO(usuarioGuardado);
     }
