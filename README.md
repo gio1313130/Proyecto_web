@@ -1,6 +1,6 @@
 # Plataforma de Regularización Académica - Backend
 
-Backend de una plataforma educativa que permite administrar materias, temas, recursos didácticos y cuestionarios. Los alumnos pueden consultar materiales, resolver cuestionarios y recibir resultados por correo electrónico.
+Es una plataforma educativa que permite administrar materias, temas, recursos didácticos y cuestionarios. Los alumnos pueden consultar materiales, resolver cuestionarios y recibir resultados por correo electrónico.
 
 ## Estado del despliegue
 
