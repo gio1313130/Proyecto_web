@@ -43,6 +43,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional
     public UsuarioResponseDTO save(UsuarioRequestDTO usuarioRequestDTO) {
+        if (usuarioRepository.existsByCorreo(usuarioRequestDTO.getCorreo())) {
+            throw new RuntimeException("Ya existe un usuario registrado con ese correo");
+        }
+
         Usuario usuario = new Usuario();
 
         usuario.setNombreUsuario(usuarioRequestDTO.getNombreUsuario());
@@ -74,6 +78,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     public UsuarioResponseDTO update(Long id, UsuarioRequestDTO usuarioRequestDTO) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con id: " + id));
+
+        if (usuarioRepository.existsByCorreoAndIdUsuarioNot(usuarioRequestDTO.getCorreo(), id)) {
+            throw new RuntimeException("Ya existe otro usuario registrado con ese correo");
+        }
 
         usuario.setNombreUsuario(usuarioRequestDTO.getNombreUsuario());
         usuario.setCorreo(usuarioRequestDTO.getCorreo());
