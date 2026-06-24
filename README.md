@@ -12,14 +12,12 @@ El backend se encuentra desplegado en Azure App Service y puede probarse públic
 **URL base:**
 
 ```txt
-https://proyecto-web-api-bhgaa7f7baaeh4dt.eastus2-01.azurewebsites.net
 https://proyecto-web-auth-api-d7hxcqbdgucnfad0.eastus2-01.azurewebsites.net
 ```
 
 **Swagger UI:**
 
 ```txt
-https://proyecto-web-api-bhgaa7f7baaeh4dt.eastus2-01.azurewebsites.net/documentacion/swagger-ui/index.html
 https://proyecto-web-auth-api-d7hxcqbdgucnfad0.eastus2-01.azurewebsites.net/documentacion/swagger-ui/index.html
 ```
 
@@ -146,7 +144,6 @@ En Azure App Service también pueden existir variables propias de la plataforma,
 URL pública de Swagger:
 
 ```txt
-https://proyecto-web-api-bhgaa7f7baaeh4dt.eastus2-01.azurewebsites.net/documentacion/swagger-ui/index.html
 Backend con autenticación JWT:
 https://proyecto-web-auth-api-d7hxcqbdgucnfad0.eastus2-01.azurewebsites.net/documentacion/swagger-ui/index.html
 ```
