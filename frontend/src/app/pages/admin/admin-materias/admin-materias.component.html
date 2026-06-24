@@ -26,7 +26,6 @@
       <table class="data-table">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Materia</th>
             <th>Descripción</th>
             <th>Semestre</th>
@@ -35,7 +34,6 @@
         </thead>
         <tbody>
           <tr *ngFor="let materia of materias">
-            <td>#{{ materia.id_materia || materia.idMateria }}</td>
             <td class="primary-cell">{{ materia.nombre_materia || materia.nombreMateria }}</td>
             <td class="desc-cell">{{ materia.descripcion_materia || materia.descripcionMateria || 'Sin descripción' }}</td>
             <td><span class="badge">Semestre {{ materia.semestre }}</span></td>

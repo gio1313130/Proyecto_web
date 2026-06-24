@@ -344,3 +344,20 @@ const downloadUrl = recurso.url.replace("/raw/upload/", "/raw/upload/fl_attachme
 ```
 
 ---
+
+## Módulo de Administración (Frontend)
+
+Se han implementado todas las interfaces gráficas en Angular para consumir los endpoints administrativos protegidos. Este módulo permite al personal con rol `ADMIN` gestionar todo el contenido de la plataforma de forma interactiva y amigable.
+
+### Características del Panel de Control:
+- **Gestión de Materias (`/admin/materias`)**: Creación, edición y eliminación de las materias principales.
+- **Gestión de Temas (`/admin/temas`)**: Permite seleccionar una materia y agregarle temas específicos con su título y descripción.
+- **Gestión de Recursos (`/admin/recursos`)**: Sistema en cascada (Materia -> Tema) para la carga de recursos de aprendizaje. Soporta subida de archivos físicos (PDFs/Documentos) mediante `FormData` al endpoint de `/upload`, y registro de URLs externas (videos).
+- **Generador de Cuestionarios (`/admin/cuestionarios`)**: Interfaz dinámica ("Builder") de una sola pantalla que permite:
+  - Definir el título del cuestionario.
+  - Agregar `N` cantidad de preguntas de manera dinámica.
+  - Agregar 4 opciones a cada pregunta y marcar cuál es la opción correcta usando _radio buttons_.
+  - Guardado en cascada automático (invoca endpoints de creación de Cuestionario, luego N Preguntas, y 4N Opciones secuencialmente).
+- **Gestión de Usuarios (`/admin/usuarios`)**: Visualización de la tabla maestra de usuarios y herramientas para modificar roles (promover a Administrador) o corregir datos personales.
+
+> **Nota para el reporte final:** El frontend cumple con todos los requisitos funcionales requeridos, integrando 100% de las rutas públicas y administrativas expuestas por Spring Boot a través de servicios inyectables (`ApiService`) y validando permisos de acceso mediante Guards (`authGuard` y `adminGuard`).

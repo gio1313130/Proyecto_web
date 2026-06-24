@@ -1,1 +1,103 @@
-<p>admin-cuestionarios works!</p>
+<div class="admin-view" *ngIf="!mostrarBuilder">
+  <div class="header-actions">
+    <h2>Gestión de Cuestionarios</h2>
+    
+    <div class="filters-container">
+      <div class="filter-group">
+        <label>Materia:</label>
+        <select [(ngModel)]="materiaSeleccionada" (change)="onMateriaChange()" class="form-control">
+          <option *ngFor="let m of materias" [value]="m.idMateria">{{ m.nombreMateria || m.nombre_materia }}</option>
+        </select>
+      </div>
+
+      <div class="filter-group" *ngIf="materiaSeleccionada">
+        <label>Tema:</label>
+        <select [(ngModel)]="temaSeleccionado" (change)="onTemaChange()" class="form-control">
+          <option *ngFor="let t of temas" [value]="t.idTema">{{ t.nombreTema }}</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" (click)="iniciarBuilder()" [disabled]="!temaSeleccionado">
+      + Crear Cuestionario
+    </button>
+  </div>
+
+  <div *ngIf="cargando" class="loading-state">
+    <div class="spinner"></div>
+    <p>Cargando cuestionarios...</p>
+  </div>
+
+  <div *ngIf="!cargando && temaSeleccionado && cuestionarios.length === 0" class="empty-state">
+    <p>No hay cuestionarios para este tema. ¡Crea el primero!</p>
+  </div>
+
+  <div *ngIf="!cargando && cuestionarios.length > 0" class="table-responsive">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cue of cuestionarios">
+          <td class="primary-cell">{{ cue.tituloCuestionario }}</td>
+          <td class="actions-cell">
+            <button class="btn-icon delete" (click)="eliminarCuestionario(cue.idCuestionario)" title="Eliminar todo">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- BUILDER VIEW -->
+<div class="builder-view" *ngIf="mostrarBuilder">
+  <div class="builder-header">
+    <div class="builder-title">
+      <h2>Creador de Cuestionarios</h2>
+      <p>Crea el título general y añade todas las preguntas necesarias con sus respectivas opciones.</p>
+    </div>
+    <div class="builder-actions">
+      <button class="btn btn-outline" (click)="cancelarBuilder()" [disabled]="guardando">Cancelar</button>
+      <button class="btn btn-primary save-btn" (click)="guardarTodo()" [disabled]="!nuevoCuestionario.tituloCuestionario || guardando">
+        {{ guardando ? 'Guardando en Servidor...' : 'Guardar Todo' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="builder-content">
+    <div class="general-config">
+      <label>Título del Cuestionario</label>
+      <input type="text" class="form-control title-input" [(ngModel)]="nuevoCuestionario.tituloCuestionario" placeholder="Ej. Examen de Geometría Básica">
+    </div>
+
+    <div class="preguntas-container">
+      <div class="pregunta-card" *ngFor="let p of nuevoCuestionario.preguntas; let pIndex = index">
+        <div class="pregunta-header">
+          <h3>Pregunta {{ pIndex + 1 }}</h3>
+          <button class="btn-icon delete" (click)="eliminarPregunta(pIndex)" title="Eliminar pregunta" *ngIf="nuevoCuestionario.preguntas.length > 1">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </button>
+        </div>
+        
+        <input type="text" class="form-control pregunta-input" [(ngModel)]="p.enunciado" placeholder="Escribe la pregunta aquí...">
+
+        <div class="opciones-list mt-3">
+          <label>Opciones (Selecciona la correcta):</label>
+          <div class="opcion-row" *ngFor="let opc of p.opciones; let oIndex = index">
+            <input type="radio" [name]="'correcta_' + pIndex" [checked]="opc.esCorrecta" (change)="setCorrecta(p, oIndex)">
+            <input type="text" class="form-control opcion-input" [(ngModel)]="opc.textoOpcion" [placeholder]="'Opción ' + (oIndex + 1)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-outline add-question-btn" (click)="agregarPregunta()">
+      + Añadir Otra Pregunta
+    </button>
+  </div>
+</div>
