@@ -1,0 +1,31 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="var(--color-primary)" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>Iniciar Sesión</h2>
+      <p>Accede a la Plataforma de Regularización Académica</p>
+    </div>
+
+    <form class="login-form">
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" [(ngModel)]="correo" name="correo" placeholder="usuario@mail.com">
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="••••••••">
+      </div>
+      
+      <button type="button" class="btn btn-primary login-submit" (click)="login()">ENTRAR</button>
+    </form>
+    
+    <div class="login-footer">
+      <a href="/">Volver al inicio</a>
+    </div>
+  </div>
+</div>

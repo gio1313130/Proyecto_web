@@ -1,0 +1,89 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div class="logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 17L12 22L22 17" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 12L12 17L22 12" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1>Cuestionario</h1>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-outline" (click)="volver()">Volver al Tema</button>
+    </div>
+  </header>
+
+  <main class="dashboard-content">
+    <div *ngIf="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Cargando cuestionario...</p>
+    </div>
+
+    <div *ngIf="error" class="error-state">
+      <p>{{ error }}</p>
+      <button class="btn btn-primary" (click)="volver()">Regresar</button>
+    </div>
+
+    <div *ngIf="!loading && !error && cuestionario" class="quiz-container">
+      
+      <!-- Modal de Resultado Overlaid -->
+      <div *ngIf="resultado" class="result-modal-overlay">
+        <div class="result-card">
+          <div class="result-icon">🎉</div>
+          <h2>¡Cuestionario Completado!</h2>
+          <p class="result-message">{{ resultado.mensaje || 'Tus respuestas han sido registradas.' }}</p>
+          
+          <div class="score-display">
+            <div class="score-circle">
+              <span class="score-number">{{ resultado.puntaje | number:'1.0-0' }}</span>
+              <span class="score-label">Puntos</span>
+            </div>
+            <div class="score-stats">
+              <p>Respuestas correctas: <strong>{{ resultado.correctas }} / {{ resultado.totalPreguntas }}</strong></p>
+            </div>
+          </div>
+          
+          <button class="btn btn-primary" style="width: 100%; margin-top: 24px;" (click)="volver()">Volver al Tema</button>
+        </div>
+      </div>
+
+      <!-- Contenido del Cuestionario -->
+      <div class="quiz-header">
+        <h2>{{ cuestionario.tituloCuestionario }}</h2>
+        <span class="badge" [ngClass]="'badge-' + cuestionario.dificultad.toLowerCase()">
+          {{ cuestionario.dificultad }}
+        </span>
+      </div>
+
+      <div class="questions-list">
+        <div class="question-card" *ngFor="let pregunta of cuestionario.preguntas; let i = index">
+          <h3 class="question-text"><span class="question-number">{{ i + 1 }}.</span> {{ pregunta.enunciado }}</h3>
+          
+          <div class="options-grid">
+            <div class="option-item" 
+                 *ngFor="let opcion of pregunta.opciones"
+                 [class.selected]="respuestas[pregunta.idPregunta] === opcion.idOpcion"
+                 (click)="seleccionarOpcion(pregunta.idPregunta, opcion.idOpcion)">
+              <div class="radio-circle">
+                <div class="radio-dot" *ngIf="respuestas[pregunta.idPregunta] === opcion.idOpcion"></div>
+              </div>
+              <span class="option-text">{{ opcion.textoOpcion }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-footer" *ngIf="!resultado">
+        <button class="btn btn-primary btn-large" 
+                [disabled]="enviando || (respuestas | keyvalue)?.length !== cuestionario.preguntas?.length" 
+                (click)="enviarCuestionario()">
+          {{ enviando ? 'Enviando...' : 'Enviar Respuestas' }}
+        </button>
+        <p class="validation-text" *ngIf="(respuestas | keyvalue)?.length !== cuestionario.preguntas?.length">
+          Faltan {{ cuestionario.preguntas.length - ((respuestas | keyvalue)?.length || 0) }} pregunta(s) por responder.
+        </p>
+      </div>
+
+    </div>
+  </main>
+</div>

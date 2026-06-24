@@ -1,0 +1,30 @@
+<nav class="navbar container">
+  <div class="navbar-brand">
+    <div class="logo-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="var(--color-primary)" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M2 17L12 22L22 17" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 12L12 17L22 12" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span class="logo-text">Regulariza</span>
+  </div>
+
+  <ul class="navbar-links">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a></li>
+    <li><a routerLink="/dashboard" routerLinkActive="active">Materias</a></li>
+  </ul>
+
+  <div class="navbar-actions">
+    <ng-container *ngIf="!isLoggedIn()">
+      <button class="btn btn-outline login-btn" (click)="goToLogin()">INICIAR SESIÓN</button>
+      <button class="btn btn-primary start-btn" (click)="goToRegister()">COMENZAR &rarr;</button>
+    </ng-container>
+    
+    <ng-container *ngIf="isLoggedIn()">
+      <button class="btn btn-outline" *ngIf="isAdmin()" (click)="goToAdmin()" style="border-color: #f59e0b; color: #f59e0b;">Panel Admin</button>
+      <button class="btn btn-outline" (click)="goToProfile()">Mi Perfil</button>
+      <button class="btn btn-primary" (click)="logout()">Cerrar Sesión</button>
+    </ng-container>
+  </div>
+</nav>

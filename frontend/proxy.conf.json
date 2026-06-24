@@ -1,0 +1,18 @@
+{
+  "/api-registro": {
+    "target": "https://proyecto-web-api-bhgaa7f7baaeh4dt.eastus2-01.azurewebsites.net",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api-registro": "/api"
+    }
+  },
+  "/api-auth": {
+    "target": "https://proyecto-web-auth-api-d7hxcqbdgucnfad0.eastus2-01.azurewebsites.net",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api-auth": "/api"
+    }
+  }
+}

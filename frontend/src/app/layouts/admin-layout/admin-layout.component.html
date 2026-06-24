@@ -1,0 +1,48 @@
+<div class="admin-wrapper">
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" [class.collapsed]="isCollapsed">
+    <div class="sidebar-header">
+      <div class="logo-icon" *ngIf="!isCollapsed">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="var(--color-primary)" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 *ngIf="!isCollapsed">Admin Panel</h2>
+      <button class="toggle-btn" (click)="toggleSidebar()">
+        <svg *ngIf="!isCollapsed" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <svg *ngIf="isCollapsed" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/admin/materias" routerLinkActive="active" class="nav-item">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <span *ngIf="!isCollapsed">Materias</span>
+      </a>
+      <!-- Otros módulos (Temas, Recursos, Cuestionarios, Usuarios) se agregarán aquí cuando el backend esté listo -->
+    </nav>
+
+    <div class="sidebar-footer">
+      <a routerLink="/dashboard" class="nav-item exit-item">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        <span *ngIf="!isCollapsed">Volver a App</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div class="breadcrumb">
+        <span>Administración</span>
+      </div>
+      <div class="user-profile">
+        <div class="avatar">A</div>
+        <span class="role-badge">ADMIN</span>
+      </div>
+    </header>
+    <div class="admin-content">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

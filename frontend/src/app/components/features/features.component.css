@@ -1,0 +1,110 @@
+.features-section {
+  padding-top: var(--spacing-xxl);
+  padding-bottom: var(--spacing-xxl);
+}
+
+.features-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: 1px solid var(--color-border);
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-muted);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  letter-spacing: -1px;
+}
+
+.features-card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  margin-bottom: var(--spacing-xl);
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  padding: 12px 24px 0;
+  gap: var(--spacing-md);
+}
+
+.tab {
+  padding: 12px 24px;
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.tab.active {
+  background-color: var(--color-text-main);
+  color: var(--color-bg-card);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.stat-item {
+  padding: var(--spacing-xxl) var(--spacing-xl);
+  text-align: center;
+  border-right: 1px solid var(--color-border);
+}
+
+.stat-item:last-child {
+  border-right: none;
+}
+
+.stat-icon {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+.stat-value {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -1px;
+}
+
+.stat-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.features-footer {
+  padding: var(--spacing-xxl) var(--spacing-xl);
+  text-align: center;
+}
+
+.features-footer-title {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.features-footer-desc {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.features-cta {
+  display: flex;
+  justify-content: center;
+}

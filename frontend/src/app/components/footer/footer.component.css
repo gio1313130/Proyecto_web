@@ -1,0 +1,112 @@
+.stack-section {
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xxl);
+}
+
+.stack-card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  overflow: hidden;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.stack-info {
+  padding: var(--spacing-xxl);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.stack-desc {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-xxl);
+}
+
+.stack-illustration {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.illustration-placeholder.small {
+  width: 150px;
+  height: 150px;
+}
+
+.stack-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack-group {
+  padding: var(--spacing-xl) var(--spacing-xxl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.stack-group:last-child {
+  border-bottom: none;
+}
+
+.stack-group-title {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.stack-group-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.stack-items {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.stack-icon-box {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-bg);
+}
+
+.main-footer {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-xl);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.footer-links a {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
